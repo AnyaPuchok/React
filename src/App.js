@@ -1,23 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { Chart as ChartJS, ArcElement, Legend, Tooltip, } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
 
-function App() {
+ChartJS.register(ArcElement, Legend, Tooltip);
+
+export const tasksChart = {
+  labels: ['Завтрак', 'Обед', 'Перекусы', 'Ужин' ],
+  datasets: [
+    {
+      label: '# of Tasks',
+      data: [25, 25, 25, 15],
+      backgroundColor: [
+        'rgba(150, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(175, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+      ],
+      borderColor: [
+        'rgba(150, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(175, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+      ],
+      borderWidth: 3,
+    },
+  ],
+};
+
+
+export function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="Title">Суточная калорийность рациона</h1>
+      <Pie data={tasksChart} className="Сircle"/>
     </div>
   );
 }
